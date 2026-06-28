@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Biddeford · July 2–5</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --sand:     #F5EFE0;
+      --ocean:    #1B4965;
+      --seafoam:  #5FA8A0;
+      --coral:    #D4694A;
+      --driftwood:#8C7559;
+      --sky:      #C9DFF2;
+      --white:    #FDFAF5;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--sand);
+      color: var(--ocean);
+      font-size: 15px;
+      line-height: 1.6;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      position: relative;
+      color: var(--white);
+      padding: 80px 32px 72px;
+      text-align: center;
+      overflow: hidden;
+      min-height: 380px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background-image: url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1400&q=80');
+      background-size: cover;
+      background-position: center 40%;
+      filter: brightness(0.45);
+    }
+    .hero > * { position: relative; z-index: 1; }
+    .hero-eyebrow {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #7FCFC7;
+      margin-bottom: 16px;
+    }
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(42px, 8vw, 72px);
+      font-weight: 700;
+      line-height: 1.05;
+      margin-bottom: 12px;
+    }
+    .hero h1 em {
+      font-style: italic;
+      font-weight: 400;
+      color: var(--sky);
+    }
+    .hero-dates {
+      font-size: 16px;
+      color: rgba(255,255,255,0.75);
+      margin-bottom: 0;
+    }
+    .wave {
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 100%;
+      z-index: 2;
+    }
+
+    /* ── WEATHER STRIP ── */
+    .weather-strip {
+      background: var(--ocean);
+      padding: 0;
+    }
+    .weather-inner {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 0 20px;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+    }
+    .weather-day {
+      padding: 18px 20px;
+      text-align: center;
+      border-right: 1px solid rgba(255,255,255,0.1);
+    }
+    .weather-day:last-child { border-right: none; }
+    .w-date { font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.5); margin-bottom: 6px; }
+    .w-icon { font-size: 26px; margin-bottom: 4px; }
+    .w-temp { font-family: 'Playfair Display', serif; font-size: 22px; color: #fff; font-weight: 700; }
+    .w-desc { font-size: 11px; color: rgba(255,255,255,0.55); margin-top: 2px; }
+    @media (max-width: 520px) {
+      .weather-inner { grid-template-columns: repeat(2, 1fr); }
+      .weather-day:nth-child(2) { border-right: none; }
+    }
+
+    /* ── LAYOUT ── */
+    .page { max-width: 860px; margin: 0 auto; padding: 0 20px; }
+
+    section { padding: 48px 0; }
+    section + section { border-top: 1px solid rgba(27,73,101,0.12); }
+
+    .section-label {
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--coral);
+      margin-bottom: 20px;
+    }
+    h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 28px;
+      font-weight: 700;
+      margin-bottom: 8px;
+      color: var(--ocean);
+    }
+    .h2-sub {
+      font-size: 13px;
+      color: var(--driftwood);
+      font-style: italic;
+      margin-bottom: 24px;
+    }
+
+    /* ── STAY CARD ── */
+    .stay-card {
+      background: var(--white);
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 4px 24px rgba(27,73,101,0.10);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+    .stay-map {
+      background: var(--sky);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 200px;
+      padding: 32px;
+    }
+    .stay-map-pin { font-size: 64px; line-height: 1; }
+    .stay-details { padding: 32px 28px; }
+    .stay-details h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 22px;
+      margin-bottom: 6px;
+    }
+    .stay-details .host { font-size: 13px; color: var(--driftwood); margin-bottom: 20px; }
+    .stay-meta { display: flex; flex-direction: column; gap: 10px; }
+    .stay-meta-row { display: flex; align-items: flex-start; gap: 10px; font-size: 14px; }
+    .stay-meta-row .icon { font-size: 16px; margin-top: 1px; }
+    .stay-meta-row strong { display: block; font-weight: 500; }
+    .stay-meta-row span { color: var(--driftwood); font-size: 13px; }
+    .directions-link {
+      display: inline-block;
+      margin-top: 20px;
+      background: var(--ocean);
+      color: var(--white);
+      padding: 10px 20px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 500;
+    }
+    .directions-link:hover { background: var(--seafoam); }
+    @media (max-width: 600px) { .stay-card { grid-template-columns: 1fr; } }
+
+    /* ── TIMELINE ── */
+    .timeline { display: flex; flex-direction: column; }
+    .timeline-day { display: grid; grid-template-columns: 72px 1fr; gap: 0 20px; }
+    .timeline-day + .timeline-day { margin-top: 8px; }
+    .day-marker { text-align: center; padding-top: 4px; }
+    .day-marker .dow { font-size: 10px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--driftwood); }
+    .day-marker .dom { font-family: 'Playfair Display', serif; font-size: 36px; font-weight: 700; color: var(--ocean); line-height: 1; }
+    .day-marker .month { font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--seafoam); }
+    .day-content { padding: 4px 0 32px; border-left: 2px solid var(--sky); padding-left: 20px; }
+    .day-content h3 { font-family: 'Playfair Display', serif; font-size: 18px; margin-bottom: 12px; }
+    .event-list { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+    .event-list li { display: flex; align-items: baseline; gap: 10px; font-size: 14px; flex-wrap: wrap; }
+    .event-list li .time { font-weight: 500; color: var(--coral); min-width: 80px; font-size: 13px; flex-shrink: 0; }
+    .event-tag {
+      display: inline-block;
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 2px 7px;
+      border-radius: 4px;
+      background: var(--sky);
+      color: var(--ocean);
+    }
+    .event-tag.soccer { background: #D4EDD4; color: #2E6B2E; }
+    .event-tag.fireworks { background: #F7DFCF; color: #8B3A1F; }
+    .event-tag.dinner { background: #F0E0F5; color: #6B2E7A; }
+    .event-tag.note { background: #FFF3CC; color: #7A5800; }
+    .event-list li a { color: var(--seafoam); text-decoration: none; }
+    .event-list li a:hover { text-decoration: underline; }
+
+    /* ── ACTIVITIES GRID ── */
+    .activities-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; }
+    .activity-card { background: var(--white); border-radius: 12px; padding: 20px; box-shadow: 0 2px 12px rgba(27,73,101,0.07); }
+    .activity-card .card-icon { font-size: 24px; margin-bottom: 10px; }
+    .activity-card h4 { font-weight: 500; font-size: 14px; margin-bottom: 8px; color: var(--ocean); }
+    .activity-card ul { list-style: none; }
+    .activity-card ul li { font-size: 13px; color: var(--driftwood); padding: 3px 0; border-bottom: 1px solid var(--sand); }
+    .activity-card ul li:last-child { border-bottom: none; }
+    .activity-card ul li a { color: var(--seafoam); text-decoration: none; }
+
+    /* ── PACKING ── */
+    .packing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px; }
+    .pack-item {
+      background: var(--white);
+      border-radius: 10px;
+      padding: 12px 16px;
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      box-shadow: 0 2px 8px rgba(27,73,101,0.06);
+    }
+    .pack-item .pack-icon { font-size: 18px; }
+    .pack-item .pack-note { font-size: 11px; color: var(--driftwood); display: block; margin-top: 2px; }
+
+    /* ── RESTAURANTS ── */
+    .restaurants-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; }
+    .restaurant-card { background: var(--white); border-radius: 10px; padding: 16px 18px; box-shadow: 0 2px 10px rgba(27,73,101,0.06); }
+    .restaurant-card .r-name { font-weight: 500; font-size: 14px; margin-bottom: 4px; }
+    .restaurant-card .r-desc { font-size: 12px; color: var(--driftwood); }
+
+    /* ── CREW ── */
+    .crew-grid { display: flex; flex-wrap: wrap; gap: 10px; }
+    .crew-pill { background: var(--ocean); color: var(--white); border-radius: 50px; padding: 8px 18px; font-size: 14px; }
+
+    /* ── FOOTER ── */
+    footer { background: var(--ocean); color: rgba(255,255,255,0.5); text-align: center; padding: 28px 20px; font-size: 12px; }
+    footer strong { color: rgba(255,255,255,0.8); }
+  </style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-bg"></div>
+  <p class="hero-eyebrow">Summer Trip · Maine</p>
+  <h1>Biddeford<br><em>by the sea</em></h1>
+  <p class="hero-dates">July 2 – 5, 2025 &nbsp;·&nbsp; 9 friends &nbsp;·&nbsp; 3 nights</p>
+  <svg class="wave" viewBox="0 0 1440 60" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0,30 C240,60 480,0 720,30 C960,60 1200,0 1440,30 L1440,60 L0,60 Z" fill="#1B4965"/>
+  </svg>
+</div>
+
+<!-- WEATHER STRIP -->
+<div class="weather-strip">
+  <div class="weather-inner">
+    <div class="weather-day">
+      <div class="w-date">Thu · Jul 2</div>
+      <div class="w-icon">⛅</div>
+      <div class="w-temp">74°F</div>
+      <div class="w-desc">Partly cloudy</div>
+    </div>
+    <div class="weather-day">
+      <div class="w-date">Fri · Jul 3</div>
+      <div class="w-icon">☀️</div>
+      <div class="w-temp">79°F</div>
+      <div class="w-desc">Sunny</div>
+    </div>
+    <div class="weather-day">
+      <div class="w-date">Sat · Jul 4</div>
+      <div class="w-icon">🌤️</div>
+      <div class="w-temp">77°F</div>
+      <div class="w-desc">Mostly sunny</div>
+    </div>
+    <div class="weather-day">
+      <div class="w-date">Sun · Jul 5</div>
+      <div class="w-icon">🌦️</div>
+      <div class="w-temp">72°F</div>
+      <div class="w-desc">Chance of rain</div>
+    </div>
+  </div>
+</div>
+
+<div class="page">
+
+  <!-- CREW (top) -->
+  <section>
+    <p class="section-label">The crew</p>
+    <h2>Who's Coming</h2>
+    <div class="crew-grid">
+      <span class="crew-pill">Lily Berger</span>
+      <span class="crew-pill">Mo Omar</span>
+      <span class="crew-pill">Christina Berger</span>
+      <span class="crew-pill">Mrs. Berger</span>
+      <span class="crew-pill">Ben Geraldolopolis</span>
+      <span class="crew-pill">Carlos Sefami</span>
+      <span class="crew-pill">Lisa Fulchino</span>
+      <span class="crew-pill">Cazzie Wass</span>
+      <span class="crew-pill">Lindsay Pilgrim</span>
+      <span class="crew-pill">Rachel Stone</span>
+    </div>
+  </section>
+
+  <!-- STAY -->
+  <section>
+    <p class="section-label">Where we're staying</p>
+    <div class="stay-card">
+      <div class="stay-map">
+        <div class="stay-map-pin">🏡</div>
+      </div>
+      <div class="stay-details">
+        <h3>Home in Biddeford</h3>
+        <p class="host">Hosted by Laura Plourde</p>
+        <div class="stay-meta">
+          <div class="stay-meta-row">
+            <span class="icon">📍</span>
+            <div>
+              <strong>159 Pool Street</strong>
+              <span>Biddeford, ME 04005</span>
+            </div>
+          </div>
+          <div class="stay-meta-row">
+            <span class="icon">🚪</span>
+            <div>
+              <strong>Check-in · Thu Jul 2, after 4:00 PM</strong>
+            </div>
+          </div>
+          <div class="stay-meta-row">
+            <span class="icon">🔑</span>
+            <div>
+              <strong>Check-out · Sun Jul 5, before 10:00 AM</strong>
+            </div>
+          </div>
+
+        </div>
+        <a class="directions-link" href="https://maps.google.com/?q=159+Pool+Street,+Biddeford,+ME+04005" target="_blank">Get directions →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ITINERARY -->
+  <section>
+    <p class="section-label">Day by day</p>
+    <h2>The Plan</h2>
+    <p class="h2-sub">Please note everything is super flexible — we're all here to have fun. We've just put down some potential activities 🙂</p>
+    <div class="timeline">
+
+      <!-- Jul 2 -->
+      <div class="timeline-day">
+        <div class="day-marker">
+          <div class="dow">Thu</div>
+          <div class="dom">2</div>
+          <div class="month">Jul</div>
+        </div>
+        <div class="day-content">
+          <h3>Arrival Day</h3>
+          <ul class="event-list">
+            <li><span class="time">4:00 PM</span> <span>Check in — settle in &amp; explore the house</span></li>
+            <li><span class="time">Evening</span> <span>Volleyball, Spike Ball, Charades, Salad Bowl</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Jul 3 -->
+      <div class="timeline-day">
+        <div class="day-marker">
+          <div class="dow">Fri</div>
+          <div class="dom">3</div>
+          <div class="month">Jul</div>
+        </div>
+        <div class="day-content">
+          <h3>Beach &amp; World Cup Day</h3>
+          <ul class="event-list">
+            <li><span class="time">Morning</span> <span>Breakfast at <strong>Palace Diner</strong> (iconic!)</span></li>
+            <li><span class="time">Midday</span> <span>Beaches — Old Orchard, Bayview, or Middle Beach</span></li>
+            <li><span class="time">Afternoon</span> <span>🚲 Biking option — <a href="https://coastalmaineoutdoors.com/" target="_blank">Coastal Maine Outdoors</a></span></li>
+            <li><span class="time">Afternoon</span> <span>🎾 Tennis at <a href="https://biddefordme.myrec.com/info/facilities/details.aspx?FacilityID=12697" target="_blank">Clifford Park</a> — open 6am–8pm, first come first served</span></li>
+            <li><span class="time">2:00 PM</span> <span><span class="event-tag soccer">⚽ WC</span> &nbsp;Australia vs Egypt</span></li>
+            <li><span class="time">6:00 PM</span> <span><span class="event-tag soccer">⚽ WC</span> &nbsp;Argentina vs Cape Verde</span></li>
+            <li><span class="time">Evening</span> <span><span class="event-tag dinner">🍽️ Dinner</span> &nbsp;Hosted by the ladies (potential theme night!)</span></li>
+            <li><span class="time">9:30 PM</span> <span><span class="event-tag soccer">⚽ WC</span> &nbsp;Colombia vs Ghana</span></li>
+            <li><span class="time">Late</span> <span><span class="event-tag note">🚗 Note</span> &nbsp;Lindsay driving up for the weekend</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Jul 4 -->
+      <div class="timeline-day">
+        <div class="day-marker">
+          <div class="dow">Sat</div>
+          <div class="dom">4</div>
+          <div class="month">Jul</div>
+        </div>
+        <div class="day-content">
+          <h3>Fourth of July 🎆</h3>
+          <ul class="event-list">
+            <li><span class="time">Morning</span> <span><span class="event-tag note">🚗 Arriving</span> &nbsp;Rachel Stone &amp; Mrs. Berger may be joining in the AM!</span></li>
+            <li><span class="time">Morning</span> <span>Trails — Ferry Beach / Timber Point or Fortunes Rocks</span></li>
+            <li><span class="time">Morning</span> <span>🎾 Tennis at <a href="https://biddefordme.myrec.com/info/facilities/details.aspx?FacilityID=12697" target="_blank">Clifford Park</a> — open 6am–8pm, first come first served</span></li>
+            <li><span class="time">1:00 PM</span> <span><span class="event-tag soccer">⚽ WC</span> &nbsp;Canada vs Netherlands</span></li>
+            <li><span class="time">5:00 PM</span> <span><span class="event-tag soccer">⚽ WC</span> &nbsp;Germany vs France (likely)</span></li>
+            <li><span class="time">Evening</span> <span><span class="event-tag dinner">🍽️ Dinner</span> &nbsp;Hosted by the fellas</span></li>
+            <li><span class="time">7:30 PM</span> <span><span class="event-tag fireworks">🎆 Fireworks</span> &nbsp;<a href="https://maps.google.com/?q=Old+Orchard+Beach,+ME" target="_blank">Old Orchard Beach</a></span></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Jul 5 -->
+      <div class="timeline-day">
+        <div class="day-marker">
+          <div class="dow">Sun</div>
+          <div class="dom">5</div>
+          <div class="month">Jul</div>
+        </div>
+        <div class="day-content">
+          <h3>Departure Day</h3>
+          <ul class="event-list">
+            <li><span class="time">Morning</span> <span>Last swim, coffee, pack up</span></li>
+            <li><span class="time">10:00 AM</span> <span>Check-out — safe travels! 👋</span></li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ACTIVITIES -->
+  <section>
+    <p class="section-label">Things to do</p>
+    <h2>Activities</h2>
+    <div class="activities-grid">
+
+      <div class="activity-card">
+        <div class="card-icon">🏖️</div>
+        <h4>Beaches</h4>
+        <ul>
+          <li>Old Orchard Beach</li>
+          <li>Bayview Beach</li>
+          <li>Middle Beach</li>
+        </ul>
+      </div>
+
+      <div class="activity-card">
+        <div class="card-icon">🌲</div>
+        <h4>Trails</h4>
+        <ul>
+          <li>Fortunes Rocks Beach</li>
+          <li>Ferry Beach State Park (Timber Point)</li>
+        </ul>
+      </div>
+
+      <div class="activity-card">
+        <div class="card-icon">🚶</div>
+        <h4>Town</h4>
+        <ul>
+          <li>10–15 min walk to town</li>
+          <li>Biddeford Pool — highly recommended</li>
+        </ul>
+      </div>
+
+      <div class="activity-card">
+        <div class="card-icon">🎾</div>
+        <h4>Tennis</h4>
+        <ul>
+          <li>Memorial Park</li>
+          <li><a href="https://biddefordme.myrec.com/info/facilities/details.aspx?FacilityID=12697" target="_blank">Clifford Park</a> — 6am–8pm</li>
+          <li>First come, first served</li>
+        </ul>
+      </div>
+
+      <div class="activity-card">
+        <div class="card-icon">🚲</div>
+        <h4>Biking</h4>
+        <ul>
+          <li><a href="https://coastalmaineoutdoors.com/" target="_blank">Coastal Maine Outdoors</a></li>
+          <li>Rentals &amp; guided rides</li>
+        </ul>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- PACKING -->
+  <section>
+    <p class="section-label">What to bring</p>
+    <h2>Suggested Packing</h2>
+    <div class="packing-grid">
+      <div class="pack-item"><span class="pack-icon">👙</span><div><strong>Bathing suit</strong></div></div>
+      <div class="pack-item"><span class="pack-icon">👟</span><div><strong>Hiking boots / sneakers</strong></div></div>
+      <div class="pack-item"><span class="pack-icon">🏖️</span><div><strong>Towels</strong></div></div>
+      <div class="pack-item"><span class="pack-icon">🪑</span><div><strong>Beach chairs</strong><span class="pack-note">Flying in? We'll bring extras!</span></div></div>
+      <div class="pack-item"><span class="pack-icon">🧊</span><div><strong>Coolers</strong></div></div>
+      <div class="pack-item"><span class="pack-icon">🌧️</span><div><strong>Rain coat + umbrella</strong></div></div>
+      <div class="pack-item"><span class="pack-icon">🔊</span><div><strong>Speakers</strong></div></div>
+      <div class="pack-item"><span class="pack-icon">🎾</span><div><strong>Tennis racket</strong><span class="pack-note">Extras welcome — bring if you have one!</span></div></div>
+      <div class="pack-item"><span class="pack-icon">🎾</span><div><strong>Tennis balls</strong><span class="pack-note">Extras welcome — bring if you have some!</span></div></div>
+    </div>
+  </section>
+
+  <!-- RESTAURANTS -->
+  <section>
+    <p class="section-label">Where to eat</p>
+    <h2>Recommended Restaurants</h2>
+    <div class="restaurants-list">
+      <div class="restaurant-card">
+        <div class="r-name">Palace Diner</div>
+        <div class="r-desc">Iconic breakfast spot</div>
+      </div>
+      <div class="restaurant-card">
+        <div class="r-name">Fish &amp; Whistle</div>
+        <div class="r-desc">Seafood</div>
+      </div>
+      <div class="restaurant-card">
+        <div class="r-name">Batson River Brewing &amp; Distilling</div>
+        <div class="r-desc">Craft beers &amp; spirits</div>
+      </div>
+      <div class="restaurant-card">
+        <div class="r-name">Magnus on Water</div>
+        <div class="r-desc">Special dinner — excellent</div>
+      </div>
+    </div>
+  </section>
+
+
+
+</div>
+
+<footer>
+  <strong>Biddeford · July 2–5, 2025</strong><br>
+  159 Pool Street, Biddeford, ME 04005 · Hosted by Laura Plourde
+</footer>
+
+</body>
+</html>
