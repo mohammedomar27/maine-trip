@@ -95,6 +95,8 @@
       display: grid;
       grid-template-columns: repeat(4, 1fr);
       gap: 0;
+      min-height: 90px;
+      align-items: center;
     }
     .weather-day {
       padding: 18px 20px;
@@ -106,6 +108,7 @@
     .w-icon { font-size: 26px; margin-bottom: 4px; }
     .w-temp { font-family: 'Playfair Display', serif; font-size: 22px; color: #fff; font-weight: 700; }
     .w-desc { font-size: 11px; color: rgba(255,255,255,0.55); margin-top: 2px; }
+    .w-loading { color: rgba(255,255,255,0.4); font-size: 12px; padding: 20px; grid-column: 1/-1; text-align: center; }
     @media (max-width: 520px) {
       .weather-inner { grid-template-columns: repeat(2, 1fr); }
       .weather-day:nth-child(2) { border-right: none; }
@@ -272,27 +275,27 @@
   <div class="weather-inner">
     <div class="weather-day">
       <div class="w-date">Thu · Jul 2</div>
-      <div class="w-icon">⛅</div>
-      <div class="w-temp">74°F</div>
-      <div class="w-desc">Partly cloudy</div>
+      <div class="w-icon">🌦️</div>
+      <div class="w-temp">72°F</div>
+      <div class="w-desc">AM shower, then sun</div>
     </div>
     <div class="weather-day">
       <div class="w-date">Fri · Jul 3</div>
       <div class="w-icon">☀️</div>
-      <div class="w-temp">79°F</div>
+      <div class="w-temp">73°F</div>
       <div class="w-desc">Sunny</div>
     </div>
     <div class="weather-day">
       <div class="w-date">Sat · Jul 4</div>
       <div class="w-icon">🌤️</div>
-      <div class="w-temp">77°F</div>
+      <div class="w-temp">74°F</div>
       <div class="w-desc">Mostly sunny</div>
     </div>
     <div class="weather-day">
       <div class="w-date">Sun · Jul 5</div>
-      <div class="w-icon">🌦️</div>
-      <div class="w-temp">72°F</div>
-      <div class="w-desc">Chance of rain</div>
+      <div class="w-icon">⛅</div>
+      <div class="w-temp">75°F</div>
+      <div class="w-desc">Partly cloudy</div>
     </div>
   </div>
 </div>
