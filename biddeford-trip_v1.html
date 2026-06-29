@@ -47,33 +47,36 @@
       background-image: url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1400&q=80');
       background-size: cover;
       background-position: center 40%;
-      filter: brightness(0.45);
+      filter: brightness(0.0); opacity: 0;
     }
     .hero > * { position: relative; z-index: 1; }
     .hero-eyebrow {
-      font-size: 11px;
-      font-weight: 500;
-      letter-spacing: 0.2em;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.22em;
       text-transform: uppercase;
-      color: #7FCFC7;
+      color: #1B4965;
       margin-bottom: 16px;
     }
     .hero h1 {
       font-family: 'Playfair Display', serif;
-      font-size: clamp(42px, 8vw, 72px);
+      font-size: clamp(48px, 9vw, 80px);
       font-weight: 700;
       line-height: 1.05;
-      margin-bottom: 12px;
+      margin-bottom: 14px;
+      color: #1B4965;
     }
     .hero h1 em {
       font-style: italic;
       font-weight: 400;
-      color: var(--sky);
+      color: #1B4965;
     }
     .hero-dates {
-      font-size: 16px;
-      color: rgba(255,255,255,0.75);
+      font-size: 17px;
+      font-weight: 500;
+      color: #1B4965;
       margin-bottom: 0;
+      letter-spacing: 0.03em;
     }
     .wave {
       position: absolute;
@@ -264,7 +267,7 @@
   <div class="hero-bg"></div>
   <p class="hero-eyebrow">Summer Trip · Maine</p>
   <h1>Biddeford<br><em>by the sea</em></h1>
-  <p class="hero-dates">July 2 – 5, 2025 &nbsp;·&nbsp; 9 friends &nbsp;·&nbsp; 3 nights</p>
+  <p class="hero-dates">July 2 – 5, 2025 &nbsp;·&nbsp; 12 friends &nbsp;·&nbsp; 3 nights</p>
   <svg class="wave" viewBox="0 0 1440 60" xmlns="http://www.w3.org/2000/svg">
     <path d="M0,30 C240,60 480,0 720,30 C960,60 1200,0 1440,30 L1440,60 L0,60 Z" fill="#1B4965"/>
   </svg>
@@ -275,27 +278,27 @@
   <div class="weather-inner">
     <div class="weather-day">
       <div class="w-date">Thu · Jul 2</div>
-      <div class="w-icon">🌦️</div>
-      <div class="w-temp">72°F</div>
-      <div class="w-desc">AM shower, then sun</div>
+      <div class="w-icon">🌧️</div>
+      <div class="w-temp">74°F</div>
+      <div class="w-desc">Scattered showers</div>
     </div>
     <div class="weather-day">
       <div class="w-date">Fri · Jul 3</div>
       <div class="w-icon">☀️</div>
-      <div class="w-temp">73°F</div>
+      <div class="w-temp">74°F</div>
       <div class="w-desc">Sunny</div>
     </div>
     <div class="weather-day">
       <div class="w-date">Sat · Jul 4</div>
-      <div class="w-icon">🌤️</div>
-      <div class="w-temp">74°F</div>
-      <div class="w-desc">Mostly sunny</div>
+      <div class="w-icon">☀️</div>
+      <div class="w-temp">82°F</div>
+      <div class="w-desc">Sunny</div>
     </div>
     <div class="weather-day">
       <div class="w-date">Sun · Jul 5</div>
-      <div class="w-icon">⛅</div>
-      <div class="w-temp">75°F</div>
-      <div class="w-desc">Partly cloudy</div>
+      <div class="w-icon">🌧️</div>
+      <div class="w-temp">81°F</div>
+      <div class="w-desc">Rain likely</div>
     </div>
   </div>
 </div>
@@ -308,8 +311,6 @@
     <h2>Who's Coming</h2>
     <div class="crew-grid">
       <span class="crew-pill">Lily Berger</span>
-      <span class="crew-pill">Lulu Berger</span>
-      <span class="crew-pill">Dave Sun</span>
       <span class="crew-pill">Mo Omar</span>
       <span class="crew-pill">Christina Berger</span>
       <span class="crew-pill">Mrs. Berger</span>
